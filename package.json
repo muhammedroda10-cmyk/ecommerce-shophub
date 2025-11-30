@@ -1,0 +1,29 @@
+{
+  "name": "ecommerce-shophub-monorepo",
+  "version": "1.0.0",
+  "description": "ShopHub E-Commerce Platform - Next.js Frontend + Laravel Backend",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && php artisan serve",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && composer install",
+    "build:frontend": "cd frontend && npm run build",
+    "lint": "cd frontend && npm run lint"
+  },
+  "keywords": [
+    "ecommerce",
+    "marketplace",
+    "nextjs",
+    "laravel",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
