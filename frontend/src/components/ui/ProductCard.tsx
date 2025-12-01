@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useCartStore } from '@/hooks/useCart';
 
 interface ProductCardProps {
     id: string;
@@ -15,6 +16,7 @@ interface ProductCardProps {
     rating?: number;
     reviewCount?: number;
     badge?: string;
+    maxQuantity?: number;
 }
 
 export default function ProductCard({
@@ -27,12 +29,27 @@ export default function ProductCard({
     rating = 0,
     reviewCount = 0,
     badge,
+    maxQuantity = 100,
 }: ProductCardProps) {
     const [isHovered, setIsHovered] = useState(false);
+    const { addItem } = useCartStore();
 
     const discount = comparePrice
         ? Math.round(((Number(comparePrice) - Number(price)) / Number(comparePrice)) * 100)
         : 0;
+
+    const handleAddToCart = () => {
+        addItem({
+            id,
+            productId: id,
+            slug,
+            title,
+            price: Number(price),
+            image,
+            maxQuantity,
+        });
+        alert('✅ Added to cart!');
+    };
 
     return (
         <motion.div
@@ -128,6 +145,7 @@ export default function ProductCard({
 
                 {/* Add to Cart Button */}
                 <motion.button
+                    onClick={handleAddToCart}
                     className="mt-3 w-full rounded-lg bg-primary-600 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
                     whileTap={{ scale: 0.98 }}
                 >
