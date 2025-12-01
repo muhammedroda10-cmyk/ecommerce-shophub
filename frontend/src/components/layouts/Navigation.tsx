@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore } from '@/hooks/useAuth';
 import SearchBar from '@/components/features/SearchBar';
+import MiniCart from '@/components/features/MiniCart';
+import { useCartStore } from '@/hooks/useCart';
 
 export default function Navigation() {
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
