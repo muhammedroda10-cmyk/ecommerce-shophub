@@ -1,34 +1,39 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuthStore } from '@/hooks/useAuth';
 
-const PUBLIC_ROUTES = ['/login', '/register', '/forgot-password', '/'];
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const router = useRouter();
     const pathname = usePathname();
-    const { isAuthenticated, fetchUser, isLoading } = useAuthStore();
+    const { fetchUser } = useAuthStore();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch user on mount if not loaded
-        if (!isAuthenticated && !isLoading) {
-            fetchUser().catch(() => {
-                // If not authenticated and trying to access protected route, redirect to login
-                if (!PUBLIC_ROUTES.includes(pathname)) {
-                    router.push('/login');
+        const initAuth = async () => {
+            // Skip auth check on public pages to prevent loops
+            const publicPages = ['/', '/login', '/register', '/products', '/search'];
+            const isPublicPage = publicPages.some(page => pathname.startsWith(page));
+
+            if (!isPublicPage) {
+                try {
+                    await fetchUser();
+                } catch (error) {
+                    // Silently fail for public pages
+                    console.log('Not authenticated');
                 }
-            });
-        }
-    }, []);
+            }
 
-    useEffect(() => {
-        // Redirect authenticated users away from auth pages
-        if (isAuthenticated && (pathname === '/login' || pathname === '/register')) {
-            router.push('/account');
-        }
-    }, [isAuthenticated, pathname]);
+            setLoading(false);
+        };
+
+        initAuth();
+    }, [fetchUser, pathname]);
+
+    // Don't show anything while loading on first mount
+    if (loading) {
+        return <>{children}</>;
+    }
 
     return <>{children}</>;
 }

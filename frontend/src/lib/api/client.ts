@@ -23,12 +23,8 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Handle unauthorized - redirect to login
-      if (typeof window !== 'undefined') {
-        window.location.href = '/login';
-      }
-    }
+    // Don't auto-redirect on 401 - let components handle auth state
+    // The AuthProvider and useAuth hook will handle redirects appropriately
     return Promise.reject(error);
   }
 );
