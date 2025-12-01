@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'link';
+import Link from 'next/link';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -30,7 +30,9 @@ export default function ProductCard({
 }: ProductCardProps) {
     const [isHovered, setIsHovered] = useState(false);
 
-    const discount = comparePrice ? Math.round(((comparePrice - price) / comparePrice) * 100) : 0;
+    const discount = comparePrice
+        ? Math.round(((Number(comparePrice) - Number(price)) / Number(comparePrice)) * 100)
+        : 0;
 
     return (
         <motion.div
@@ -115,11 +117,11 @@ export default function ProductCard({
                 {/* Price */}
                 <div className="flex items-baseline gap-2">
                     <span className="text-lg font-bold text-gray-900">
-                        ${price.toFixed(2)}
+                        ${Number(price).toFixed(2)}
                     </span>
                     {comparePrice && (
                         <span className="text-sm text-gray-500 line-through">
-                            ${comparePrice.toFixed(2)}
+                            ${Number(comparePrice).toFixed(2)}
                         </span>
                     )}
                 </div>
