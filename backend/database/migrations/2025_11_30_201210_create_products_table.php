@@ -27,7 +27,8 @@ return new class extends Migration {
 
             $table->index(['slug', 'status']);
             $table->index('seller_id');
-            $table->fullText(['title', 'description']);
+            // Note: fullText index requires PostgreSQL/MySQL, not supported in SQLite
+            // $table->fullText(['title', 'description']);
         });
     }
 
