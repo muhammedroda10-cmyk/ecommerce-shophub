@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { jakarta, inter, jetbrainsMono } from '@/lib/fonts';
-import '@/styles/globals.css';
+import './globals.css';
 import Navigation from '@/components/layouts/Navigation';
 import Footer from '@/components/layouts/Footer';
 import { AuthProvider } from '@/components/features/AuthProvider';

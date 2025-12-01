@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import ImageGallery from '@/components/ui/ImageGallery';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import ProductCard from '@/components/ui/ProductCard';
 import { getProduct } from '@/lib/api/products';
+import { useCartStore } from '@/hooks/useCart';
 
 export default function ProductDetailPage() {
     const params = useParams();
     const [product, setProduct] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const { addItem } = useCartStore();
 
     useEffect(() => {
         if (params.slug) {
@@ -28,6 +29,24 @@ export default function ProductDetailPage() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleAddToCart = () => {
+        if (!product) return;
+
+        const images = product.images?.map((img: any) => img.url) || ['/placeholder.jpg'];
+
+        addItem({
+            id: product.id,
+            productId: product.id,
+            slug: product.slug,
+            title: product.title,
+            price: Number(product.price),
+            image: images[0],
+            quantity: selectedQuantity,
+            maxQuantity: product.quantity,
+        });
+        alert('Added to cart!');
     };
 
     if (loading) {
@@ -152,6 +171,7 @@ export default function ProductDetailPage() {
                             </div>
 
                             <button
+                                onClick={handleAddToCart}
                                 disabled={!product.is_in_stock}
                                 className="btn btn-primary w-full py-4 text-lg disabled:opacity-50"
                             >

@@ -170,7 +170,7 @@ class ProductSeeder extends Seeder
 
             if ($product->images()->count() === 0) {
                 $product->images()->create([
-                    'url' => 'https://via.placeholder.com/600x600?text=' . urlencode($productData['title']),
+                    'url' => 'https://placehold.co/600x600/png?text=' . urlencode($productData['title']),
                     'position' => 1,
                     'is_primary' => true,
                 ]);

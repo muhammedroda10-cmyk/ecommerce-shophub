@@ -5,11 +5,18 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
 
 // Public routes
 Route::prefix('v1')->group(function () {
-    // Authentication routes
+    // Authentication
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
@@ -42,6 +49,6 @@ Route::prefix('v1')->group(function () {
         Route::post('/cart/clear', [CartController::class, 'clear']);
 
         // Orders
-        // Route::apiResource('orders', OrderController::class);
+        Route::apiResource('orders', OrderController::class);
     });
 });

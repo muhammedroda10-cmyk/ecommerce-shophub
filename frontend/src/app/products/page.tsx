@@ -20,7 +20,28 @@ export default function ProductsPage() {
     const loadProducts = async () => {
         setLoading(true);
         try {
-            const data = await getProducts({ ...filters, sort_by: sortBy });
+            let sort_by: 'created_at' | 'price' | 'title' = 'created_at';
+            let sort_order: 'asc' | 'desc' = 'desc';
+
+            switch (sortBy) {
+                case 'price':
+                    sort_by = 'price';
+                    sort_order = 'asc';
+                    break;
+                case 'price_desc':
+                    sort_by = 'price';
+                    sort_order = 'desc';
+                    break;
+                case 'title':
+                    sort_by = 'title';
+                    sort_order = 'asc';
+                    break;
+                default:
+                    sort_by = 'created_at';
+                    sort_order = 'desc';
+            }
+
+            const data = await getProducts({ ...filters, sort_by, sort_order });
             setProducts(data.data || []);
         } catch (error) {
             console.error('Failed to load products:', error);
@@ -56,7 +77,7 @@ export default function ProductsPage() {
                                 {loading ? 'Loading...' : `${products.length} products found`}
                             </p>
                             <select
-                                className="input w-48"
+                                className="input-field w-48"
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}
                             >
@@ -83,6 +104,7 @@ export default function ProductsPage() {
                                         rating={product.rating}
                                         reviewCount={product.review_count}
                                         badge={product.is_on_sale ? 'Sale' : undefined}
+                                        maxQuantity={product.quantity}
                                     />
                                 ))}
                         </div>
