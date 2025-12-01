@@ -1,91 +1,119 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50">
-      <div className="container-custom py-20">
-        {/* Hero Section */}
-        <div className="text-center animate-fade-in">
-          <h1 className="text-6xl font-bold font-heading mb-6 text-gradient">
-            Welcome to ShopHub
-          </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            The next-generation e-commerce marketplace with stunning UI and seamless shopping
-            experience
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex gap-4 justify-center mb-16">
-            <button className="btn btn-primary px-8 py-3 text-base">Start Shopping</button>
-            <button className="btn btn-outline px-8 py-3 text-base">Become a Seller</button>
-          </div>
-
-          {/* Feature Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mt-20">
-            {/* Card 1 */}
-            <div className="card p-8 group hover:scale-105 transition-transform">
-              <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">
-                🛍️
-              </div>
-              <h3 className="font-heading text-xl font-bold mb-3">Premium Products</h3>
-              <p className="text-gray-600">
-                Curated selection of high-quality products from verified sellers worldwide
-              </p>
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-purple-800 text-white">
+        <div className="absolute inset-0 bg-grid-white/10"></div>
+        <div className="container-custom relative py-20 md:py-32">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur-sm">
+              <span>✨</span>
+              <span>New arrivals every week</span>
             </div>
-
-            {/* Card 2 */}
-            <div className="card p-8 group hover:scale-105 transition-transform">
-              <div className="w-16 h-16 bg-gradient-accent rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">
-                🚀
-              </div>
-              <h3 className="font-heading text-xl font-bold mb-3">Fast Delivery</h3>
-              <p className="text-gray-600">
-                Lightning-fast shipping with real-time tracking on all your orders
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="card p-8 group hover:scale-105 transition-transform">
-              <div className="w-16 h-16 bg-gradient-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl">
-                🔒
-              </div>
-              <h3 className="font-heading text-xl font-bold mb-3">Secure Payments</h3>
-              <p className="text-gray-600">
-                Multiple payment options with bank-level encryption and fraud protection
-              </p>
-            </div>
-          </div>
-
-          {/* Status Section */}
-          <div className="mt-20 glass rounded-2xl p-8">
-            <h2 className="text-2xl font-heading font-bold mb-4 text-gray-800">
-              🎉 Phase 1 Complete!
-            </h2>
-            <div className="inline-block">
-              <div className="space-y-2 text-left">
-                <div className="flex items-center gap-3">
-                  <span className="badge badge-success">✓</span>
-                  <span className="text-gray-700">Next.js 16 + TypeScript Setup</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="badge badge-success">✓</span>
-                  <span className="text-gray-700">Tailwind CSS 4 + Design System</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="badge badge-success">✓</span>
-                  <span className="text-gray-700">Custom Fonts & Typography</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="badge badge-success">✓</span>
-                  <span className="text-gray-700">Project Structure</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="badge badge-success">✓</span>
-                  <span className="text-gray-700">Utilities & TypeScript Types</span>
-                </div>
-              </div>
+            <h1 className="mb-6 text-4xl font-bold md:text-6xl">
+              Discover Amazing Products
+              <span className="block bg-gradient-to-r from-accent-400 to-pink-400 bg-clip-text text-transparent">
+                From Trusted Sellers
+              </span>
+            </h1>
+            <p className="mb-8 text-lg text-white/90 md:text-xl">
+              Shop from thousands of products across multiple categories. Quality guaranteed, fast shipping.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 font-semibold text-primary-700 shadow-lg transition-transform hover:scale-105"
+              >
+                🛍️ Browse Products →
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white px-8 py-4 font-semibold transition-colors hover:bg-white hover:text-primary-700"
+              >
+                Start Selling
+              </Link>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16">
+        <div className="container-custom">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="text-center">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 text-3xl">
+                🚚
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Free Shipping</h3>
+              <p className="text-gray-600">On orders over $50</p>
+            </div>
+            <div className="text-center">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-accent-100 text-3xl">
+                🛡️
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Secure Payment</h3>
+              <p className="text-gray-600">100% secure transactions</p>
+            </div>
+            <div className="text-center">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-success-100 text-3xl">
+                ↩️
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">Easy Returns</h3>
+              <p className="text-gray-600">30-day return policy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="bg-gray-50 py-16">
+        <div className="container-custom">
+          <h2 className="mb-8 text-center text-3xl font-bold">Shop by Category</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {['Electronics', 'Fashion', 'Home & Living', 'Sports'].map((category) => (
+              <Link
+                key={category}
+                href={`/category/${category.toLowerCase().replace(' & ', '-')}`}
+                className="group relative overflow-hidden rounded-xl bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-lg"
+              >
+                <div className="mb-4 text-4xl">📦</div>
+                <h3 className="font-semibold text-gray-900 group-hover:text-primary-600">
+                  {category}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16">
+        <div className="container-custom">
+          <div className="overflow-hidden rounded-2xl bg-gradient-primary p-8 text-center text-white md:p-12">
+            <h2 className="mb-4 text-3xl font-bold">Ready to Start Shopping?</h2>
+            <p className="mb-6 text-lg text-white/90">
+              Join thousands of happy customers today
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <Link
+                href="/products"
+                className="btn bg-white text-primary-700 hover:bg-gray-100"
+              >
+                View All Products
+              </Link>
+              <Link
+                href="/login"
+                className="btn border-2 border-white bg-transparent hover:bg-white hover:text-primary-700"
+              >
+                Sign In
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
