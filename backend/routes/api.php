@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -12,6 +13,11 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
     Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
     Route::post('/auth/reset-password', [AuthController::class, 'resetPassword']);
+
+    // Search
+    Route::get('/search', [SearchController::class, 'search']);
+    Route::get('/search/autocomplete', [SearchController::class, 'autocomplete']);
+    Route::get('/search/suggestions', [SearchController::class, 'suggestions']);
 
     // Products
     Route::get('/products', [ProductController::class, 'index']);
