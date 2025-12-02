@@ -88,6 +88,7 @@ class CartController extends Controller
 
         return response()->json([
             'message' => 'Item added to cart',
+            'data' => $cartItem ?? $cart->items()->where('product_id', $product->id)->first(),
         ]);
     }
 

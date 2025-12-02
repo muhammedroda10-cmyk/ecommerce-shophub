@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 Route::prefix('v1')->group(function () {
+    // Temporary fix for roles
+    Route::get('/fix-roles', function () {
+        $role = \Spatie\Permission\Models\Role::firstOrCreate(['name' => 'customer']);
+        return response()->json(['message' => 'Role created', 'role' => $role]);
+    });
+
     // Authentication
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
@@ -47,6 +54,9 @@ Route::prefix('v1')->group(function () {
         Route::put('/cart/{id}', [CartController::class, 'update']);
         Route::delete('/cart/{id}', [CartController::class, 'destroy']);
         Route::post('/cart/clear', [CartController::class, 'clear']);
+
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'stats']);
 
         // Orders
         Route::apiResource('orders', OrderController::class);

@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuthStore } from '@/hooks/useAuth';
+import { useCartStore } from '@/hooks/useCart';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-    const { fetchUser } = useAuthStore();
+    const { fetchUser, isAuthenticated } = useAuthStore();
+    const { mergeCart, fetchCart } = useCartStore();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -29,6 +31,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         initAuth();
     }, [fetchUser, pathname]);
+
+    // Sync cart when authenticated
+    useEffect(() => {
+        if (isAuthenticated) {
+            mergeCart();
+        }
+    }, [isAuthenticated, mergeCart]);
 
     // Don't show anything while loading on first mount
     if (loading) {

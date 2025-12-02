@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCartStore } from '@/hooks/useCart';
 import { useAuthStore } from '@/hooks/useAuth';
-import apiClient from '@/lib/api/client';
+import { createOrder } from '@/lib/api/orders';
 
 export default function CheckoutPage() {
     const router = useRouter();
@@ -46,7 +46,6 @@ export default function CheckoutPage() {
         if (!isAuthenticated) {
             setError('Please login to place an order');
             setIsSubmitting(false);
-            // Redirect to login logic could go here
             return;
         }
 
@@ -59,7 +58,7 @@ export default function CheckoutPage() {
                 ...formData
             };
 
-            await apiClient.post('/orders', orderData);
+            await createOrder(orderData);
 
             clearCart();
             router.push('/checkout/success');
