@@ -41,7 +41,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                         <input
                             type="number"
                             placeholder="Min"
-                            className="input w-full"
+                            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                             value={priceRange.min}
                             onChange={(e) => setPriceRange({ ...priceRange, min: Number(e.target.value) })}
                         />
@@ -49,12 +49,12 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                         <input
                             type="number"
                             placeholder="Max"
-                            className="input w-full"
+                            className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                             value={priceRange.max}
                             onChange={(e) => setPriceRange({ ...priceRange, max: Number(e.target.value) })}
                         />
                     </div>
-                    <button onClick={handlePriceChange} className="btn btn-primary w-full">
+                    <button onClick={handlePriceChange} className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
                         Apply
                     </button>
                 </div>
@@ -68,7 +68,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                         <label key={category.id} className="flex items-center gap-2 cursor-pointer">
                             <input
                                 type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 checked={selectedCategories.includes(category.id)}
                                 onChange={(e) => {
                                     if (e.target.checked) {
@@ -92,7 +92,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                         <label key={brand.id} className="flex items-center gap-2 cursor-pointer">
                             <input
                                 type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 checked={selectedBrands.includes(brand.id)}
                                 onChange={(e) => {
                                     if (e.target.checked) {
@@ -116,7 +116,7 @@ export default function FilterSidebar({ onFilterChange }: FilterSidebarProps) {
                     setSelectedBrands([]);
                     onFilterChange({});
                 }}
-                className="w-full text-sm text-primary-600 hover:text-primary-700"
+                className="w-full text-sm text-blue-600 hover:text-blue-700 hover:underline"
             >
                 Clear All Filters
             </button>

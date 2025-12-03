@@ -1,0 +1,4 @@
+{
+    "message": "Order placement failed",
+    "error": "SQLSTATE[HY000]: General error: 1 no such column: carts.user_id (Connection: sqlite, SQL: delete from \"carts\" where \"carts\".\"user_id\" = 1 and \"carts\".\"user_id\" is not null)"
+}

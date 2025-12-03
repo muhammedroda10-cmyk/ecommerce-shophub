@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Log;
+
 class OrderController extends Controller
 {
     public function index()
@@ -95,6 +97,7 @@ class OrderController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Order placement failed: ' . $e->getMessage(), ['exception' => $e]);
             return response()->json([
                 'message' => 'Order placement failed',
                 'error' => $e->getMessage()

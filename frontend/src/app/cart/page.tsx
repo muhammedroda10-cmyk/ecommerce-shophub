@@ -18,7 +18,7 @@ export default function CartPage() {
                 </div>
                 <h1 className="mb-2 text-2xl font-bold text-gray-900">Your cart is empty</h1>
                 <p className="mb-8 text-gray-600">Looks like you haven't added anything to your cart yet.</p>
-                <Link href="/products" className="btn btn-primary">
+                <Link href="/products" className="rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
                     Start Shopping
                 </Link>
             </div>
@@ -49,7 +49,7 @@ export default function CartPage() {
                                         <div>
                                             <div className="flex justify-between text-base font-medium text-gray-900">
                                                 <h3>
-                                                    <Link href={`/products/${item.slug}`} className="hover:text-primary-600">
+                                                    <Link href={`/products/${item.slug}`} className="hover:text-blue-600">
                                                         {item.title}
                                                     </Link>
                                                 </h3>
@@ -77,7 +77,7 @@ export default function CartPage() {
                                             <button
                                                 type="button"
                                                 onClick={() => removeItem(item.productId)}
-                                                className="font-medium text-error-600 hover:text-error-500"
+                                                className="font-medium text-red-600 hover:text-red-500"
                                             >
                                                 Remove
                                             </button>
@@ -104,7 +104,7 @@ export default function CartPage() {
                         <div className="mt-6">
                             <Link
                                 href="/checkout"
-                                className="btn btn-primary w-full py-3 text-base"
+                                className="block w-full rounded-lg bg-blue-600 px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-700 transition-colors"
                             >
                                 Proceed to Checkout
                             </Link>

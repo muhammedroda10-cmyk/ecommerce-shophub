@@ -27,7 +27,7 @@ export default function CheckoutPage() {
         return (
             <div className="container-custom py-12 text-center">
                 <h1 className="text-2xl font-bold">Your cart is empty</h1>
-                <Link href="/products" className="mt-4 inline-block text-primary-600 hover:underline">
+                <Link href="/products" className="mt-4 inline-block text-blue-600 hover:underline">
                     Go shopping
                 </Link>
             </div>
@@ -64,7 +64,7 @@ export default function CheckoutPage() {
             router.push('/checkout/success');
         } catch (err: any) {
             console.error('Order failed:', err);
-            setError(err.response?.data?.message || 'Failed to place order. Please try again.');
+            setError(err.response?.data?.error || err.response?.data?.message || 'Failed to place order. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
@@ -89,7 +89,7 @@ export default function CheckoutPage() {
                                     required
                                     value={formData.shipping_name}
                                     onChange={handleChange}
-                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                             </div>
 
@@ -101,7 +101,7 @@ export default function CheckoutPage() {
                                     required
                                     value={formData.shipping_address}
                                     onChange={handleChange}
-                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                             </div>
 
@@ -114,7 +114,7 @@ export default function CheckoutPage() {
                                         required
                                         value={formData.shipping_city}
                                         onChange={handleChange}
-                                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                 </div>
                                 <div>
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
                                         required
                                         value={formData.shipping_postal_code}
                                         onChange={handleChange}
-                                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     />
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ export default function CheckoutPage() {
                                     required
                                     value={formData.shipping_phone}
                                     onChange={handleChange}
-                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                 />
                             </div>
 
@@ -149,14 +149,14 @@ export default function CheckoutPage() {
                                         type="radio"
                                         checked
                                         readOnly
-                                        className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500"
+                                        className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500"
                                     />
                                     <span className="ml-2 text-gray-700">Cash on Delivery (COD)</span>
                                 </div>
                             </div>
 
                             {error && (
-                                <div className="rounded-lg bg-error-50 p-4 text-sm text-error-600">
+                                <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
                                     {error}
                                 </div>
                             )}
@@ -164,7 +164,7 @@ export default function CheckoutPage() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="btn btn-primary w-full py-3 text-lg disabled:opacity-50"
+                                className="w-full rounded-lg bg-blue-600 py-3 text-lg font-medium text-white hover:bg-blue-700 disabled:opacity-50"
                             >
                                 {isSubmitting ? 'Processing...' : 'Place Order'}
                             </button>

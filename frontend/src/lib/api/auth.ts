@@ -52,6 +52,16 @@ export const getCurrentUser = async (): Promise<User> => {
     return response.data.data;
 };
 
+export const updateProfile = async (data: { name: string; email: string }) => {
+    const response = await apiClient.put('/auth/profile', data);
+    return response.data.data;
+};
+
+export const updatePassword = async (data: { current_password: string; password: string; password_confirmation: string }) => {
+    const response = await apiClient.put('/auth/password', data);
+    return response.data;
+};
+
 export const forgotPassword = async (email: string): Promise<void> => {
     await apiClient.post('/auth/forgot-password', { email });
 };

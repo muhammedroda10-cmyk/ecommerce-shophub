@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { getOrders } from '@/lib/api/orders';
 import Link from 'next/link';
-import Breadcrumbs from '@/components/ui/Breadcrumbs';
 
 export default function OrdersPage() {
     const [orders, setOrders] = useState<any[]>([]);
@@ -30,7 +29,7 @@ export default function OrdersPage() {
     if (loading && orders.length === 0) {
         return (
             <div className="flex h-64 items-center justify-center">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
             </div>
         );
     }
@@ -49,9 +48,9 @@ export default function OrdersPage() {
                                 <div>
                                     <div className="flex items-center gap-3">
                                         <h3 className="font-bold text-gray-900">{order.order_number}</h3>
-                                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${order.status === 'completed' ? 'bg-success-100 text-success-800' :
-                                                order.status === 'pending' ? 'bg-warning-100 text-warning-800' :
-                                                    'bg-gray-100 text-gray-800'
+                                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${order.status === 'completed' ? 'bg-green-100 text-green-800' :
+                                            order.status === 'pending' ? 'bg-amber-100 text-amber-800' :
+                                                'bg-gray-100 text-gray-800'
                                             }`}>
                                             {order.status}
                                         </span>
@@ -67,7 +66,7 @@ export default function OrdersPage() {
                                     </div>
                                     <Link
                                         href={`/dashboard/orders/${order.id}`}
-                                        className="btn btn-secondary text-sm"
+                                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                                     >
                                         View Details
                                     </Link>
@@ -103,7 +102,7 @@ export default function OrdersPage() {
                     <div className="mb-4 text-4xl">📦</div>
                     <h3 className="text-lg font-semibold text-gray-900">No orders yet</h3>
                     <p className="mt-1 text-gray-500">Start shopping to see your orders here.</p>
-                    <Link href="/products" className="btn btn-primary mt-6">
+                    <Link href="/products" className="mt-6 rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors">
                         Browse Products
                     </Link>
                 </div>

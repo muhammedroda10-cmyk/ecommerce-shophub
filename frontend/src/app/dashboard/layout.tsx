@@ -24,7 +24,7 @@ export default function DashboardLayout({
     if (!isHydrated || isLoading) {
         return (
             <div className="flex h-screen items-center justify-center bg-gray-50">
-                <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent"></div>
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent"></div>
             </div>
         );
     }
@@ -46,7 +46,7 @@ export default function DashboardLayout({
                     <aside className="w-full lg:w-64 flex-shrink-0">
                         <div className="sticky top-24 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                             <div className="mb-6 flex items-center gap-3 border-b border-gray-100 pb-6">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 text-lg font-bold text-primary-700">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-700">
                                     {user?.name?.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
@@ -63,7 +63,7 @@ export default function DashboardLayout({
                                             key={item.name}
                                             href={item.href}
                                             className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${isActive
-                                                ? 'bg-primary-50 text-primary-700'
+                                                ? 'bg-blue-50 text-blue-700'
                                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                                                 }`}
                                         >
@@ -74,7 +74,7 @@ export default function DashboardLayout({
                                 })}
                                 <button
                                     onClick={() => logout()}
-                                    className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-error-600 transition-colors hover:bg-error-50"
+                                    className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
                                 >
                                     <span>🚪</span>
                                     Sign Out
